@@ -4,7 +4,7 @@
 int main(){
 
 #pragma omp parallel for
-	for (int i=0; i<23; i++)
+	for (int i=0; i<10; i++)
 	{
 		int tid = omp_get_thread_num();
 		int nthreads = omp_get_num_threads();
