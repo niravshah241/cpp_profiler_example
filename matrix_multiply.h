@@ -1,5 +1,5 @@
 #include <iostream>
-#include "omp.h"
+#include <omp.h>
 #include <bits/stdc++.h>
 
 #ifndef MAT_MUL

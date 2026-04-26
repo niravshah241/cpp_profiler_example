@@ -1,6 +1,5 @@
 #include "matrix_multiply.h"
 
-
 void matrix_vector_multiply(std::vector<std::vector<double>>& A,
     std::vector<double>& x, std::vector<double>& b){
         int rows = A.size();

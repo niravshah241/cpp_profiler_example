@@ -1,5 +1,5 @@
 #include <iostream>
-#include "mpi.h"
+#include <omp.h>
 #include <bits/stdc++.h>
 
 #ifndef GEN_NUM

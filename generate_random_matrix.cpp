@@ -19,6 +19,8 @@ void generate_vector(std::vector<double>& x){
     #pragma omp parallel for
     for (int j=0; j<columns; j++){
         x[j] = rand() % 100;
+        int tid = omp_get_thread_num();
+        int nthreads = omp_get_num_threads();
     }
 
 }
