@@ -1,5 +1,6 @@
 #include <iostream>
 #include <omp.h>
+#include <mpi.h>
 #include <bits/stdc++.h>
 
 #ifndef GEN_NUM
@@ -8,5 +9,9 @@
 void generate_matrix(std::vector<std::vector<double>> &A);
 
 void generate_vector(std::vector<double> &b);
+
+void generate_matrix_mpi(std::vector<std::vector<double>> &A, int,int);
+
+void generate_vector_mpi(std::vector<double> &b, int, int);
 
 #endif
