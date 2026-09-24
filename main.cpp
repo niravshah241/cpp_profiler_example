@@ -4,8 +4,8 @@
 
 int main(int argc, char *argv[]){
 
-    int rows = 5;
-    int columns = 3;
+    int rows = std::stoi(argv[1]);
+    int columns = std::stoi(argv[2]);
 
     std::vector<std::vector<double>> rand_mat(rows, std::vector<double>(columns, -1.1));
     std::vector<double> rand_vec(columns, 0.);
@@ -26,6 +26,7 @@ int main(int argc, char *argv[]){
     MPI_Init(&argc, &argv);
     
     int world_size;
+
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
     int world_rank;
@@ -38,17 +39,8 @@ int main(int argc, char *argv[]){
     MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
 
     std::vector<int> indices;
-    int indices_per_rank = rows / world_size;
-    if (world_rank != world_size-1){
-        for (int i=world_rank*indices_per_rank; i<(world_rank+1)*indices_per_rank; i++){
-            indices.push_back(i);
-        }
-    }
-    else {
-        for (int i=world_rank*indices_per_rank; i<rows; i++){
-            indices.push_back(i);
-        }
-    }
+
+    get_indices(indices, rand_mat.size(), world_size, world_rank);
 
     for (int i=0; i<indices.size(); i++){
         std::cout << world_rank << indices[i] << std::endl;
@@ -56,8 +48,12 @@ int main(int argc, char *argv[]){
 
     matrix_vector_multiply_mpi(rand_mat, rand_vec, multiplication_result, indices);
 
-    
+    for (int i=0; i<2; i++){
+    matrix_vector_multiply_mpi(rand_mat, rand_vec, multiplication_result, indices);
+    }
 
+
+    
     MPI_Finalize();
 
     return 0;

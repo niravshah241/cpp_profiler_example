@@ -1,0 +1,11 @@
+spack:
+  specs:
+    - scorep@9.2 +mpi ~papi ~gcc-plugin
+    - openmpi
+
+  packages:
+    all:
+      compiler: [gcc@13.3.0]
+
+  concretizer:
+    unify: true

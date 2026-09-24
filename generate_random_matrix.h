@@ -14,4 +14,6 @@ void generate_matrix_mpi(std::vector<std::vector<double>> &A, int,int);
 
 void generate_vector_mpi(std::vector<double> &b, int, int);
 
+void get_indices(std::vector<int> &indices, const int rows, const int size, const int rank);
+
 #endif

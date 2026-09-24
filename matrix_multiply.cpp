@@ -16,10 +16,8 @@ void matrix_vector_multiply(std::vector<std::vector<double>>& A,
             b[i] = sum;
         }
     }
-
 */
-
-
+    
 // MPI Code
 void matrix_vector_multiply_mpi(std::vector<std::vector<double>>& A,
     std::vector<double>& x, std::vector<double>& b, const std::vector<int>& indices){
