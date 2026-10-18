@@ -1,36 +1,4 @@
-#include "generate_random_matrix.h"
-
-//OMP Code
-/*
-void generate_matrix(std::vector<std::vector<double>>& A){
-    int rows = A.size();
-    int columns = A[0].size();
-
-    #pragma omp parallel for
-    for (int i=0; i<rows; i++){
-        for (int j=0; j<columns; j++){
-            A[i][j] = rand() % 100;
-        }
-    }
-
-}
-*/
-
-/*
-void generate_vector(std::vector<double>& x){
-    int columns = x.size();
-
-    #pragma omp parallel for
-    for (int j=0; j<columns; j++){
-        x[j] = rand() % 100;
-        int tid = omp_get_thread_num();
-        int nthreads = omp_get_num_threads();
-    }
-
-}
-*/
-
-// MPI code
+#include "generate_random_matrix_mpi.h"
 
 void get_indices(std::vector<int>& indices, const int rows, const int size, const int rank){
     int indices_per_rank = rows / size;

@@ -1,7 +1,8 @@
 spack:
   specs:
-    - scorep@9.2 +mpi ~papi ~gcc-plugin
+    - scorep +mpi ~papi ~gcc-plugin
     - openmpi
+    - cube
 
   packages:
     all:

@@ -1,5 +1,5 @@
-#include "generate_random_matrix.h"
-#include "matrix_multiply.h"
+#include "generate_random_matrix_mpi.h"
+#include "matrix_multiply_mpi.h"
 #include <mpi.h>
 
 int main(int argc, char *argv[]){
@@ -11,17 +11,6 @@ int main(int argc, char *argv[]){
     std::vector<double> rand_vec(columns, 0.);
     std::vector<double> rand_vec_local(columns, 0.);
     std::vector<double> multiplication_result(rows, 0.);
-
-    // OMP Code
-    /*
-    generate_matrix(rand_mat);
-
-    generate_vector(rand_vec);
-
-    matrix_vector_multiply(rand_mat, rand_vec, multiplication_result);
-    */
-
-    // MPI code
 
     MPI_Init(&argc, &argv);
     
