@@ -1,0 +1,50 @@
+#include "generate_random_matrix_mpi.h"
+#include "matrix_multiply_mpi.h"
+#include <mpi.h>
+
+int main(int argc, char *argv[]){
+
+    int rows = std::stoi(argv[1]);
+    int columns = std::stoi(argv[2]);
+
+    std::vector<std::vector<double>> rand_mat(rows, std::vector<double>(columns, -1.1));
+    std::vector<double> rand_vec(columns, 0.);
+    std::vector<double> rand_vec_local(columns, 0.);
+    std::vector<double> multiplication_result(rows, 0.);
+
+    MPI_Init(&argc, &argv);
+    
+    int world_size;
+
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+
+    generate_matrix_mpi(rand_mat, world_size, world_rank);
+
+    generate_vector_mpi(rand_vec_local, world_size, world_rank);
+    MPI_Allreduce(rand_vec_local.data(), rand_vec.data(), columns,
+    MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+
+    std::vector<int> indices;
+
+    get_indices(indices, rand_mat.size(), world_size, world_rank);
+
+    for (int i=0; i<indices.size(); i++){
+        std::cout << world_rank << indices[i] << std::endl;
+    }
+
+    matrix_vector_multiply_mpi(rand_mat, rand_vec, multiplication_result, indices);
+
+    for (int i=0; i<2; i++){
+    matrix_vector_multiply_mpi(rand_mat, rand_vec, multiplication_result, indices);
+    }
+
+
+    
+    MPI_Finalize();
+
+    return 0;
+
+}

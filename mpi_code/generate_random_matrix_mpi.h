@@ -1,0 +1,15 @@
+#include <iostream>
+#include <omp.h>
+#include <mpi.h>
+#include <bits/stdc++.h>
+
+#ifndef GEN_NUM
+#define GEN_NUM
+
+void generate_matrix_mpi(std::vector<std::vector<double>> &A, int,int);
+
+void generate_vector_mpi(std::vector<double> &b, int, int);
+
+void get_indices(std::vector<int> &indices, const int rows, const int size, const int rank);
+
+#endif

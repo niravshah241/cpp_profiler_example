@@ -1,0 +1,12 @@
+spack:
+  specs:
+    - scorep +mpi ~papi ~gcc-plugin
+    - openmpi
+    - cube
+
+  packages:
+    all:
+      compiler: [gcc@13.3.0]
+
+  concretizer:
+    unify: true

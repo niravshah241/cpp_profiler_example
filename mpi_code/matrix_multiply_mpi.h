@@ -1,0 +1,10 @@
+#include <iostream>
+#include <bits/stdc++.h>
+
+#ifndef MAT_MUL
+#define MAT_MUL
+
+void matrix_vector_multiply_mpi(std::vector<std::vector<double>>& A,
+    std::vector<double>& x, std::vector<double>& b, const std::vector<int>& indices);
+
+#endif
